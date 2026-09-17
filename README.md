@@ -2,6 +2,8 @@
 
 A simple Todo application built with Angular.
 
+[Open Live Demo](https://vladislav-korsun.github.io/angular-todo/)
+
 ## Features
 
 - Create todos
