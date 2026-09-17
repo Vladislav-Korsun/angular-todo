@@ -1,0 +1,279 @@
+.todo {
+  width: 100%;
+  min-height: 72px;
+
+  padding: 14px 16px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  background: #ffffff;
+  border: 1px solid #e7e9ee;
+  border-radius: 16px;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover {
+    border-color: #d4d8e1;
+    box-shadow: 0 8px 24px rgba(20, 25, 35, 0.06);
+    transform: translateY(-1px);
+  }
+
+  &--completed {
+    background: #fafafa;
+
+    .todo__title {
+      color: #9ca3af;
+      text-decoration: line-through;
+    }
+  }
+
+  &__status-label {
+    position: relative;
+
+    width: 22px;
+    height: 22px;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+  }
+
+  &__status {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    opacity: 0;
+    pointer-events: none;
+
+    &:checked + .todo__checkbox {
+      background: #111827;
+      border-color: #111827;
+
+      &::after {
+        opacity: 1;
+        transform: rotate(45deg) scale(1);
+      }
+    }
+
+    &:focus-visible + .todo__checkbox {
+      outline: 3px solid rgba(17, 24, 39, 0.12);
+      outline-offset: 2px;
+    }
+  }
+
+  &__checkbox {
+    width: 22px;
+    height: 22px;
+
+    display: block;
+
+    position: relative;
+
+    border: 1.5px solid #cdd1d8;
+    border-radius: 7px;
+
+    background: #ffffff;
+
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      transform 0.15s ease;
+
+    &::after {
+      content: '';
+
+      position: absolute;
+      left: 7px;
+      top: 3px;
+
+      width: 5px;
+      height: 10px;
+
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+
+      opacity: 0;
+
+      transform: rotate(45deg) scale(0.7);
+
+      transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
+    }
+
+    &:active {
+      transform: scale(0.92);
+    }
+  }
+
+  &__content {
+    min-width: 0;
+    flex: 1;
+  }
+
+  &__title {
+    display: block;
+
+    color: #20242c;
+
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.45;
+
+    cursor: text;
+
+    transition: color 0.2s ease;
+  }
+
+  &__edit-form {
+    width: 100%;
+  }
+
+  &__title-field {
+    width: 100%;
+
+    padding: 9px 11px;
+
+    color: #171a21;
+
+    font: inherit;
+    font-size: 15px;
+
+    background: #f8f9fb;
+
+    border: 1px solid #cfd4dc;
+    border-radius: 10px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+
+    &:focus {
+      background: #ffffff;
+      border-color: #818896;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+    }
+
+    &::placeholder {
+      color: #a6abb5;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    flex-shrink: 0;
+  }
+
+  &__priority {
+    padding: 6px 10px;
+
+    border: 0;
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+
+    cursor: pointer;
+
+    transition:
+      transform 0.15s ease,
+      opacity 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+
+    &--low {
+      color: #29784a;
+      background: #e9f8ef;
+    }
+
+    &--medium {
+      color: #9a6412;
+      background: #fff4d6;
+    }
+
+    &--high {
+      color: #b23a3a;
+      background: #fdeaea;
+    }
+  }
+
+  &__priority-select {
+    padding: 7px 30px 7px 10px;
+
+    color: #333843;
+    font-size: 12px;
+    font-weight: 600;
+
+    background: #f8f9fb;
+
+    border: 1px solid #d9dde4;
+    border-radius: 9px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    &:focus {
+      border-color: #8c93a0;
+      box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.06);
+    }
+  }
+
+  &__delete {
+    width: 32px;
+    height: 32px;
+
+    display: grid;
+    place-items: center;
+
+    padding: 0;
+
+    color: #8c929c;
+    font-size: 22px;
+    line-height: 1;
+
+    background: transparent;
+
+    border: 0;
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    transition:
+      color 0.2s ease,
+      background-color 0.2s ease,
+      transform 0.15s ease;
+
+    &:hover {
+      color: #d23f3f;
+      background: #fff0f0;
+    }
+
+    &:active {
+      transform: scale(0.92);
+    }
+  }
+}

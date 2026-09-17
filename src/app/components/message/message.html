@@ -1,0 +1,16 @@
+@if (message(); as message) {
+  <div
+    class="message"
+    [class.message--success]="message.type === 'success'"
+    [class.message--error]="message.type === 'error'"
+  >
+    <span>{{ message.text }}</span>
+
+    <button
+      type="button"
+      (click)="close()"
+    >
+      X
+    </button>
+  </div>
+}

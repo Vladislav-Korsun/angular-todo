@@ -1,0 +1,58 @@
+.todo-page {
+  min-height: 100vh;
+
+  padding: 40px 20px;
+
+  background: #f7f7f7;
+
+  box-sizing: border-box;
+
+  &__container {
+    width: 100%;
+    max-width: 800px;
+
+    margin: 0 auto;
+  }
+
+  &__header {
+    margin-bottom: 24px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__title {
+    margin: 0;
+
+    color: #222;
+
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  &__subtitle {
+    margin: 6px 0 0;
+
+    color: #777;
+
+    font-size: 14px;
+  }
+
+  &__controls {
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__list {
+    margin-top: 16px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

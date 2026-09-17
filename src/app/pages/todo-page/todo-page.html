@@ -1,0 +1,48 @@
+<div class="todo-page">
+  <div class="todo-page__container">
+    <header class="todo-page__header">
+      <div>
+        <h1 class="todo-page__title">
+          Todo List
+        </h1>
+
+        <p class="todo-page__subtitle">
+          Manage your daily tasks
+        </p>
+      </div>
+      <app-message></app-message>
+    </header>
+
+    <app-todo-form
+      (save)="createTodo($event.title, $event.priority)"
+    ></app-todo-form>
+
+    <div class="todo-page__controls">
+      <app-filter
+        [currentFilter]="filter()"
+      ></app-filter>
+
+      <app-sort
+        [currentSort]="sort()"
+        (sortChange)="sort.set($event)"
+      ></app-sort>
+    </div>
+
+    <div class="todo-page__list">
+      @for (
+        todo of todos()
+          | filterTodos: filter()
+          | sortTodos: sort();
+        track todo.id
+      ) {
+        <app-todo
+          [todo]="todo"
+          (delete)="deleteTodo(todo)"
+          (toggle)="toggleTodo(todo)"
+          (rename)="renameTodo(todo, $event)"
+          (priorityChange)="changeTodoPriority(todo, $event)"
+        ></app-todo>
+      }
+    </div>
+  </div>
+</div>

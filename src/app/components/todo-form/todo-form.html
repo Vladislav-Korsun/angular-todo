@@ -1,0 +1,55 @@
+<form
+  class="todo-form"
+  (ngSubmit)="handleFormSubmit()"
+  [formGroup]="todoForm"
+>
+  <div class="todo-form__field">
+    @if (title.invalid && title.touched) {
+      <div class="todo-form__error">
+        @if (title.hasError('required')) {
+          <span>Title is required</span>
+        }
+
+        @if (title.hasError('minlength')) {
+          <span>Title must contain at least 3 characters</span>
+        }
+      </div>
+    }
+    <input
+      id="title"
+      type="text"
+      class="todo-form__input"
+      placeholder="What needs to be done?"
+      formControlName="title"
+    >
+  </div>
+
+  <div class="todo-form__priority">
+    <label
+      class="todo-form__label"
+      for="priority"
+    >
+      Priority
+    </label>
+
+    <select
+      id="priority"
+      class="todo-form__select"
+      formControlName="priority"
+    >
+      @for (priority of priorities; track priority) {
+        <option [value]="priority">
+          {{ priority }}
+        </option>
+      }
+    </select>
+  </div>
+
+  <button
+    class="todo-form__button"
+    type="submit"
+    [disabled]="todoForm.invalid"
+  >
+    Add todo
+  </button>
+</form>

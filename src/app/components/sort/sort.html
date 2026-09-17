@@ -1,0 +1,18 @@
+<select
+  id="sort"
+  class="sort"
+  [ngModel]="currentSort"
+  (ngModelChange)="sortChange.emit($event)"
+>
+  <option value="none">
+    Default
+  </option>
+
+  <option value="high-to-low">
+    High → Low
+  </option>
+
+  <option value="low-to-high">
+    Low → High
+  </option>
+</select>

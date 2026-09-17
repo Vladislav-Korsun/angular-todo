@@ -1,0 +1,77 @@
+<div class="todo" [class.todo--completed]="todo.completed">
+  <label class="todo__status-label">
+    <input
+      [id]="'check-' + todo.id"
+      type="checkbox"
+      class="todo__status"
+      (change)="toggle.emit()"
+      [checked]="todo.completed"
+    >
+
+    <span class="todo__checkbox"></span>
+  </label>
+
+  <div class="todo__content">
+    @if (editing) {
+      <form
+        class="todo__edit-form"
+        (ngSubmit)="save()"
+      >
+        <input
+          #titleField
+          [id]="'title-' + todo.id"
+          type="text"
+          class="todo__title-field"
+          placeholder="Enter todo title"
+          name="title"
+          [(ngModel)]="title"
+          (keyup.escape)="cancelEditing()"
+        >
+      </form>
+    } @else {
+      <span
+        class="todo__title"
+        (dblclick)="edit()"
+      >
+        {{ todo.title }}
+      </span>
+    }
+  </div>
+
+  <div class="todo__actions">
+    @if (changePriority) {
+      <select
+        [id]="'priority-' + todo.id"
+        class="todo__priority-select"
+        [ngModel]="todo.priority"
+        (ngModelChange)="savePriority($event)"
+      >
+        @for (priority of priorities; track priority) {
+          <option [value]="priority">
+            {{ priority }}
+          </option>
+        }
+      </select>
+    } @else {
+      <button
+        type="button"
+        class="todo__priority"
+        [class.todo__priority--low]="todo.priority === 'low'"
+        [class.todo__priority--medium]="todo.priority === 'medium'"
+        [class.todo__priority--high]="todo.priority === 'high'"
+        (dblclick)="handlechangePriority()"
+      >
+        {{ todo.priority }}
+      </button>
+    }
+
+    <button
+      type="button"
+      class="todo__delete"
+      (click)="delete.emit()"
+      aria-label="Delete todo"
+    >
+      ×
+    </button>
+  </div>
+</div>

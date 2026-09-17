@@ -1,0 +1,51 @@
+.message {
+  width: 100%;
+  max-width: 420px;
+
+  padding: 12px 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  border: 1px solid;
+  border-radius: 10px;
+
+  box-sizing: border-box;
+
+  &--success {
+    color: #226c3f;
+    background: #edf9f1;
+    border-color: #b9e5c8;
+  }
+
+  &--error {
+    color: #a83232;
+    background: #fff0f0;
+    border-color: #efb7b7;
+  }
+
+  button {
+    width: 28px;
+    height: 28px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid #d4d4d447;
+
+    padding: 0;
+
+    color: inherit;
+    background: transparent;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.06);
+    }
+  }
+}

@@ -1,0 +1,25 @@
+<nav class="filters">
+  <a
+    [routerLink]="[]"
+    [queryParams]="{ filter: 'all' }"
+    [class.active]="currentFilter === 'all'"
+  >
+    All
+  </a>
+
+  <a
+    [routerLink]="[]"
+    [queryParams]="{ filter: 'active' }"
+    [class.active]="currentFilter === 'active'"
+  >
+    Active
+  </a>
+
+  <a
+    [routerLink]="[]"
+    [queryParams]="{ filter: 'completed' }"
+    [class.active]="currentFilter === 'completed'"
+  >
+    Completed
+  </a>
+</nav>
