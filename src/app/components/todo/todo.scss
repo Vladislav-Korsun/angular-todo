@@ -1,6 +1,7 @@
 .todo {
   width: 100%;
   min-height: 72px;
+  position: relative;
 
   padding: 14px 16px;
 
@@ -24,6 +25,35 @@
     border-color: #d4d8e1;
     box-shadow: 0 8px 24px rgba(20, 25, 35, 0.06);
     transform: translateY(-1px);
+  }
+
+  &--loading {
+    pointer-events: none;
+  }
+
+  &__loader {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: inherit;
+
+    z-index: 5;
+  }
+
+  &__spinner {
+    width: 22px;
+    height: 22px;
+
+    border: 3px solid #ddd;
+    border-top-color: #222;
+    border-radius: 50%;
+
+    animation: todo-spin 0.7s linear infinite;
   }
 
   &--completed {
@@ -55,7 +85,7 @@
     opacity: 0;
     pointer-events: none;
 
-    &:checked + .todo__checkbox {
+    &:checked+.todo__checkbox {
       background: #111827;
       border-color: #111827;
 
@@ -65,7 +95,7 @@
       }
     }
 
-    &:focus-visible + .todo__checkbox {
+    &:focus-visible+.todo__checkbox {
       outline: 3px solid rgba(17, 24, 39, 0.12);
       outline-offset: 2px;
     }
@@ -275,5 +305,11 @@
     &:active {
       transform: scale(0.92);
     }
+  }
+}
+
+@keyframes todo-spin {
+  to {
+    transform: rotate(360deg);
   }
 }

@@ -1,4 +1,15 @@
-<div class="todo" [class.todo--completed]="todo.completed">
+<div
+  class="todo"
+  [class.todo--completed]="todo.completed"
+  [class.todo--loading]="loading"
+>
+
+  @if (loading) {
+    <div class="todo__loader">
+      <span class="todo__spinner"></span>
+    </div>
+  }
+
   <label class="todo__status-label">
     <input
       [id]="'check-' + todo.id"

@@ -11,6 +11,8 @@ import { SortComponents } from '../../components/sort/sort';
 import { SortTodosPipe } from '../../pipes/sort-pipe';
 import { MessageService } from '../../services/message';
 import { MessageComponent } from '../../components/message/message';
+import { LoadingService } from '../../services/loading';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-todo-page',
@@ -35,6 +37,7 @@ export class TodoPage implements OnInit {
     private todoService: TodoService,
     private route: ActivatedRoute,
     private messageService: MessageService,
+    public loadingService: LoadingService,
   ) { }
 
   ngOnInit(): void {
@@ -88,8 +91,15 @@ export class TodoPage implements OnInit {
   toggleTodo(todo: Todo): void {
     const completed = !todo.completed;
 
+    this.loadingService.start(todo.id);
+
     this.todoService
       .updateTodo(todo.id, { completed })
+      .pipe(
+        finalize(() => {
+          this.loadingService.stop(todo.id);
+        }),
+      )
       .subscribe({
         next: () => {
           this.todos.update(todos =>
@@ -120,10 +130,17 @@ export class TodoPage implements OnInit {
       return;
     }
 
+    this.loadingService.start(todo.id);
+
     this.todoService
       .updateTodo(todo.id, {
         title: newTitle,
       })
+      .pipe(
+        finalize(() => {
+          this.loadingService.stop(todo.id);
+        }),
+      )
       .subscribe({
         next: () => {
           this.todos.update(todos =>
@@ -151,8 +168,15 @@ export class TodoPage implements OnInit {
     todo: Todo,
     priority: TodoPriority
   ): void {
+    this.loadingService.start(todo.id);
+
     this.todoService
       .updateTodo(todo.id, { priority })
+      .pipe(
+        finalize(() => {
+          this.loadingService.stop(todo.id);
+        }),
+      )
       .subscribe({
         next: () => {
           this.todos.update(todos =>
@@ -177,8 +201,15 @@ export class TodoPage implements OnInit {
   }
 
   deleteTodo(todo: Todo): void {
+    this.loadingService.start(todo.id);
+
     this.todoService
       .deleteTodo(todo)
+      .pipe(
+        finalize(() => {
+          this.loadingService.stop(todo.id);
+        }),
+      )
       .subscribe({
         next: () => {
           this.todos.update(todos =>

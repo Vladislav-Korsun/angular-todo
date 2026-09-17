@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, input, Input, Output, ViewChild } from '@angular/core';
 import { Todo, TodoPriority } from '../../types/todo';
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class TodoComponent {
   @Input() todo!: Todo;
+  @Input() loading = false;
 
   @Output() delete = new EventEmitter();
   @Output() toggle = new EventEmitter();

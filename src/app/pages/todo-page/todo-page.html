@@ -41,6 +41,7 @@
           (toggle)="toggleTodo(todo)"
           (rename)="renameTodo(todo, $event)"
           (priorityChange)="changeTodoPriority(todo, $event)"
+          [loading]="loadingService.isLoading(todo.id)"
         ></app-todo>
       }
     </div>
